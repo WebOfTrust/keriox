@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main, dev, feat-coverage ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main, dev, feat-coverage ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -15,8 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Install stable toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
+
+
     - name: Run tests
       run: cargo test --verbose
+
+    - name: Run cargo-tarpaulin
+      uses: actions-rs/tarpaulin@v0.1
+      with:
+        version: '0.22.0'
+
+    - name: Upload to codecov.io
+      uses: codecov/codecov-action@v1.0.2
