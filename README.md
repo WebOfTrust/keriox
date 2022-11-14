@@ -1,5 +1,8 @@
 # KERIOX
 
+[![keriox](https://github.com/WebOfTrust/keriox/actions/workflows/rust.yml/badge.svg)](https://github.com/WebOfTrust/keriox/actions/workflows/rust.yml)
+[![codecov](https://codecov.io/gh/WebOfTrust/keriox/branch/master/graph/badge.svg?token=3X0I0W2JVA)](https://codecov.io/gh/WebOfTrust/keriox)
+
 - [Introduction](#introduction)
 - [Features](#features)
 
