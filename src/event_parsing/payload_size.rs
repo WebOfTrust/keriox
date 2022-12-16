@@ -60,8 +60,11 @@ pub enum PayloadType {
     /// couples pre+sig
     #[serde(rename = "-C")]
     MC,
+    /// Count of attached qualified Base64 transferable identifier receipt
+    /// quadruples pre+snu+dig+sig
     #[serde(rename = "-D")]
     MD,
+    /// Count of attached qualified Base64 first seen replay couples fn+dt
     #[serde(rename = "-E")]
     ME,
     /// Count of attached qualified Base64 transferable indexed sig groups
@@ -74,18 +77,9 @@ pub enum PayloadType {
     /// Count of composed group: IdentifierPrefix + Controller Indexed Signatures
     #[serde(rename = "-H")]
     MH,
-    #[serde(rename = "-U")]
-    MU,
+    /// Count of total attached grouped material qualified Base64 4 char quadlets
     #[serde(rename = "-V")]
     MV,
-    #[serde(rename = "-W")]
-    MW,
-    #[serde(rename = "-X")]
-    MX,
-    #[serde(rename = "-Y")]
-    MY,
-    #[serde(rename = "-Z")]
-    MZ,
     // TODO: Indexed signatures
 }
 
@@ -139,12 +133,7 @@ impl PayloadType {
             | Self::ME
             | Self::MF
             | Self::MG
-            | Self::MU
-            | Self::MV
-            | Self::MW
-            | Self::MX
-            | Self::MY
-            | Self::MZ => {
+            | Self::MV => {
                 if qb2 {
                     3
                 } else {
@@ -180,12 +169,7 @@ impl PayloadType {
             | Self::ME
             | Self::MF
             | Self::MG
-            | Self::MU
-            | Self::MV
-            | Self::MW
-            | Self::MX
-            | Self::MY
-            | Self::MZ => 2,
+            | Self::MV => 2,
             _ => todo!(),
         }
     }
@@ -247,12 +231,7 @@ impl TryFrom<&str> for PayloadType {
             "-F" => Ok(Self::MF),
             "-G" => Ok(Self::MG),
             "-H" => Ok(Self::MH),
-            "-U" => Ok(Self::MU),
             "-V" => Ok(Self::MV),
-            "-W" => Ok(Self::MW),
-            "-X" => Ok(Self::MX),
-            "-Y" => Ok(Self::MY),
-            "-Z" => Ok(Self::MZ),
             _ => Err(Error::ImproperPrefixType),
         }
     }
@@ -297,12 +276,7 @@ impl Display for PayloadType {
             Self::MF => f.write_str("-F"),
             Self::MG => f.write_str("-G"),
             Self::MH => f.write_str("-H"),
-            Self::MU => f.write_str("-U"),
             Self::MV => f.write_str("-V"),
-            Self::MW => f.write_str("-W"),
-            Self::MX => f.write_str("-X"),
-            Self::MY => f.write_str("-Y"),
-            Self::MZ => f.write_str("-Z"),
         }
     }
 }
