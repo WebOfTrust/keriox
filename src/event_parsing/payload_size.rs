@@ -139,6 +139,7 @@ impl PayloadType {
             | Self::ME
             | Self::MF
             | Self::MG
+            | Self::MH
             | Self::MU
             | Self::MV
             | Self::MW
@@ -180,6 +181,7 @@ impl PayloadType {
             | Self::ME
             | Self::MF
             | Self::MG
+            | Self::MH
             | Self::MU
             | Self::MV
             | Self::MW
